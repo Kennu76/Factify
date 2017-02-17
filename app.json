@@ -1,0 +1,8 @@
+{
+  "name": "Factify",
+  "description": "",
+  "repository": "",
+  "logo": "",
+  "keywords": ["node", "express", "static"],
+  "image": "heroku/nodejs"
+}
