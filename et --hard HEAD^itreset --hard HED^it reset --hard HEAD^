@@ -1,0 +1,114 @@
+[33mcommit d002c759c41859a74eac7c0cf7a1a03301dd9de5[m
+Author: Kennu76 <kevin.kanarbik@gmail.com>
+Date:   Sun Feb 26 22:32:30 2017 +0200
+
+    Synced with Herokus deploy
+
+[33mcommit 1563fd05cf7ae32d5cafd81cfd3ed1c3a4121b0b[m
+Author: Kennu76 <kevin.kanarbik@gmail.com>
+Date:   Sun Feb 26 21:38:01 2017 +0200
+
+    Made login page prettier with CSS and JS functions
+
+[33mcommit f6aac8c042863602136c33f502fb196d8270f8b0[m
+Merge: 7e84a05 9d6ea5a
+Author: SuperTurban <tambet.uutsalu@gmail.com>
+Date:   Sun Feb 26 20:54:14 2017 +0200
+
+    Merge branch 'master' of heroku.com:factify
+
+[33mcommit 7e84a057e7040e1272e829e59e6e41640e897c6f[m
+Author: nuubis <marttikakk@hotmail.com>
+Date:   Sun Feb 26 19:29:26 2017 +0200
+
+    Added new and worst tables
+
+[33mcommit c28d43898989c35a68b6d0cbe3db3daa97de5bbf[m
+Author: Kennu76 <kevin.kanarbik@gmail.com>
+Date:   Sat Feb 25 18:09:27 2017 +0200
+
+    Added static settings page
+
+[33mcommit 9d6ea5ad6c8782fe78abbea27d54b34955fc3b68[m
+Author: Kennu76 <kevin.kanarbik@gmail.com>
+Date:   Sat Feb 25 18:09:26 2017 +0200
+
+    Added static settings page
+
+[33mcommit e23d9b80d5d462c20547d062f83bdc0a816fff23[m
+Author: Kennu76 <kevin.kanarbik@gmail.com>
+Date:   Sat Feb 25 18:02:46 2017 +0200
+
+    Added static tables and headers everywhere
+
+[33mcommit 9b0a2c3b78e654b826db4b4a1b436fa0e69fa376[m
+Author: Kennu76 <kevin.kanarbik@gmail.com>
+Date:   Sat Feb 25 18:02:45 2017 +0200
+
+    Added static tables and headers everywhere
+
+[33mcommit 5f975216f646e73a9cda47527a98cce2411189f4[m
+Author: Martti <marttikakk@hotmail.com>
+Date:   Wed Feb 22 15:45:26 2017 +0200
+
+    Update README.md
+
+[33mcommit 5fb8318a44c6b1cffd2110e640d48504ffd97b48[m
+Author: nuubis <marttikakk@hotmail.com>
+Date:   Wed Feb 22 15:43:45 2017 +0200
+
+    something
+
+[33mcommit 803dca4620dc02e5edc8a74151cd682d256c3dc8[m
+Author: Kennu76 <kevin.kanarbik@gmail.com>
+Date:   Wed Feb 22 15:29:55 2017 +0200
+
+    Added logged in version of index and settings page
+
+[33mcommit 6d2b3c043dfa8d35a5f71d6ffa8ec8da827f8b20[m
+Author: Kennu76 <kevin.kanarbik@gmail.com>
+Date:   Wed Feb 22 15:21:35 2017 +0200
+
+    Added best page
+
+[33mcommit 36f323653253c0bdb419d7c294c28dad07f7f65b[m
+Author: Kennu76 <kevin.kanarbik@gmail.com>
+Date:   Wed Feb 22 15:11:11 2017 +0200
+
+    blablabla
+
+[33mcommit 326ccabe104e7f330f184526d083ccefe6fcc9ed[m
+Author: Kennu76 <kevin.kanarbik@gmail.com>
+Date:   Wed Feb 22 14:43:17 2017 +0200
+
+    yolo
+
+[33mcommit e6db7476b6278b672a306ccaec53b6d4301500b6[m
+Author: Kennu76 <kevin.kanarbik@gmail.com>
+Date:   Wed Feb 22 14:35:45 2017 +0200
+
+    Added login page 'login.html' and the needed referencefff
+
+[33mcommit b4e17d26d170180b31bed50ac93f518a2c702af4[m
+Author: Kennu76 <kevin.kanarbik@gmail.com>
+Date:   Wed Feb 22 14:27:15 2017 +0200
+
+    another attempt
+
+[33mcommit 50d35e66485340cde03c896866e79fa17abcc9a3[m
+Author: Kennu76 <kevin.kanarbik@gmail.com>
+Date:   Wed Feb 22 14:19:15 2017 +0200
+
+    Added login page 'login.html' and the needed reference
+
+[33mcommit 883ea4c8a22185b4a2b1287488a7d67b2708e3f5[m
+Author: Kennu76 <kevin.kanarbik@gmail.com>
+Date:   Tue Feb 21 15:10:12 2017 +0200
+
+    Added login page 'login.html' and the needed reference
+
+[33mcommit f50c300c0d5e1bb598950b52459ff54d62d926e1[m
+Author: SuperTurban <tambet.uutsalu@gmail.com>
+Date:   Fri Feb 17 14:41:38 2017 +0200
+
+    init
