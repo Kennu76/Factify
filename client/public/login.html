@@ -31,10 +31,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="best.html">Parimad<span class="sr-only">(current)</span></a></li>
-                <li class=""><a href="#">Uusimad<span class="sr-only"></span></a></li>
-                <li class=""><a href="#">Halvimad<span class="sr-only"></span></a></li>
-                <li class=""><a href="#">Parimad kasutajad<span class="sr-only"></span></a></li>
+                <li class=""><a href="best.html">Parimad<span class="sr-only">(current)</span></a></li>
+                <li class=""><a href="newest.html">Uusimad<span class="sr-only"></span></a></li>
                 <li><a href="#"></a></li>
             </ul>
             <form class="navbar-form navbar-left">
@@ -47,26 +45,31 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-<form action="/action_page.php">
-    <div class="imgcontainer">
-        <img src="img_avatar2.png" alt="Avatar" class="avatar">
-    </div>
 
-    <div class="container">
-        <label><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
+<div class="row">
+<form>
+        <div class="col-md-4 col-md-offset-4">
+        <h1>Logi sisse</h1>
+           <div class="form-group">
+            <label for="username">Kasutajanimi</label>
+            <input type="email" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+        </div>
 
-        <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <div class="col-md-4 col-md-offset-4">
+           <div class="form-group">
+            <label for="pw">Parool</label>
+            <input type="email" class="form-control" id="pw" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+        </div>
+            
+        </div>
 
-        <button type="submit"><a href="index_loggedin.html">Login</a></button>
-        <input type="checkbox" checked="checked"> Remember me
-    </div>
-    <li><a href="index_loggedin.html">LOG IN</a></li>
-    <div class="container" style="background-color:#f1f1f1">
-        <button type="button" class="cancelbtn">Cancel</button>
-        <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-</form>
+        <div class="col-md-4 col-md-offset-4">
+         <button class="btn" type="submit"><a href="index_loggedin.html">Logi sisse</a></button>
+            <span class="psw"> <a href="#">Forgot password?</a></span>
+        </div>
+    </form>       
+</div>
 </body>
 </html>
