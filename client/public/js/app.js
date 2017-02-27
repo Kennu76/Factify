@@ -1,12 +1,10 @@
 $(function(){
-	$.getJSON('/facts', function(data){
-		$("#skoor").html(data.like_count);
-		$(".fact-in").html(data.poster);
-	},'json');
-
+$("#upvote").addClass('disabled');
 	$(".showcomments").click(function(){
 		$("#comments").toggle();
 	});
+
+
 	$('#login-form-link').click(function(e) {
         	$("#login-form").delay(100).fadeIn(100);
      		$("#register-form").fadeOut(100);
@@ -22,16 +20,6 @@ $(function(){
     		e.preventDefault();
     	});
 
-	$("#upvote").click(function(){
-		var that = this;
-		$(that).attr('disabled',true);
-		$(that).addClass('disabled');
-
-		$.post('/upvote', function(){
-			$(that).html("ok");
-			$("#skoor").html(Number($("#skoor").html())+1);
-		});
-	})
 });
 
 
