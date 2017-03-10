@@ -19,6 +19,9 @@ $("#upvote").addClass('disabled');
     		$(this).addClass('active');
     		e.preventDefault();
     	});
+    	$(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
 
 });
 
