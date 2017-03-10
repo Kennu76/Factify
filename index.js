@@ -28,7 +28,7 @@ app.listen(app.get('port'), function() {
 });
 
 app.get('/front', function(req,res){
-	res.render('index', {title: 'Cool, huh!', condition: false, anyArray:[]});
+	res.render('index', {title: 'TEEEEEEEST', condition: false, anyArray:[]});
 });
 
 app.get('/usertest', function(req,res){
@@ -59,6 +59,21 @@ app.get('/user',function(req,res){
 	users.on('end', function(result){
 		res.send(result);
 	});
+});
+
+
+var generateFact = function(){
+	var fact = {};	
+	var r = Math.round(Math.random() * 1000) + 2;
+	fact.fact = "Random fact #  with not content " + r; 
+	fact.user = "Random user " + Math.round(r / 2);
+	fact.timestamp = Date.now() - r * 60 * 60 * 887 * 24;
+	fact.votes = Math.round(Math.abs(Math.sin(r) * r));
+	return fact;
+};
+
+app.get('/fact/next', function(req,res){
+	res.send(generateFact());
 });
 
 
