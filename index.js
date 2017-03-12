@@ -47,7 +47,7 @@ app.engine('hbs', hbs(
 			},
 			selected : function(selected, value){
 				if(selected == value)
-					return " selected = selected ";
+					return ' selected = "selected" ' 
 				else
 					return "";
 			}
