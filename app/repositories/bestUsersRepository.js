@@ -5,7 +5,8 @@ var bestUsersRepository = {
      * @param {Object} options
      *   @param {Number} options.limit - Number of users to retrieve;
      *   @param {Number} options.days - Number of days.
-     * @param {Function} callback(result) - result is array of retrieved objects or  "error" if error occurs.
+     * @param {Function} callback(result) - callback is called after query is done
+     *                                      result is array of retrieved objects or  "error" if error occurs.
      */
     get : function(options, callback){
        var query = psql.query(`SELECT username, count(facts.id) as factCount, sum(votes.type) as votesum from users

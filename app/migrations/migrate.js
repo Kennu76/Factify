@@ -1,3 +1,4 @@
+/** script to manage and sync databases  */
 var pg = require('pg');
 var glob = require('glob');
 var path = require('path');

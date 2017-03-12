@@ -32,7 +32,7 @@ $("#upvote").addClass('disabled');
 });
 
 
-function vote(type, fact){
+function vote(type, fact, vote){
 	$.ajax({
 		type: 'POST',
 		url : '/votes',
