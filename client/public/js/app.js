@@ -1,5 +1,4 @@
 $(function(){
-$("#upvote").addClass('disabled');
 	$(".showcomments").click(function(){
 		$("#comments").toggle();
 	});
@@ -26,26 +25,15 @@ $("#upvote").addClass('disabled');
 		$("#bestof-interval").change(function(e){
 			window.location.search = "time=" + $(this).val();
 		});
-
-
-
 });
 
 
-function vote(type, fact, vote){
+function vote(type, fact, success){
 	$.ajax({
 		type: 'POST',
 		url : '/votes',
 		data: {type : type, fact: fact},
-		success : function(res){
-			console.log(res);
-		},
+		success : success,
 		dataType : 'json'
 	});
 }
-
-
-
-
-
-

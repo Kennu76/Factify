@@ -2,6 +2,13 @@ var Fact = require(__base + "/models/fact");
 
 module.exports = function(app){
 
+     app.get('/facts/next', function(req,res){
+        var  factRepo = require(__base + '/repositories/factRepository');
+        factRepo.getRandom(function(fact){
+            res.json(fact);
+        })
+    });
+
     app.get("/facts", function(req,res){
         var q = Fact.list();
         q.on("error", function(){

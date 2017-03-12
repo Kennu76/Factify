@@ -120,7 +120,7 @@ var ModelObjectProto = {
 
 
 /**
- * function to create new model, which is used to create entities or query object from database
+ * function to create new model, which is used to create entities or query 
  */
 var modelFactory = function(schema){
     var model = Object.create(ModelProto);
