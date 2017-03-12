@@ -4,7 +4,9 @@
 window.onload = function(){
     //kuulame nupu vajutuse eventi click, käivitab saadaAjax
     document.getElementById("nupp").addEventListener("click", saadaAjax);
+    $("#fakt").html(response.fact)
 }
+
 
 
 function saadaAjax(){
@@ -39,4 +41,6 @@ function saadaAjax(){
 
     //saadab päringu serverisse
     ajaxReq.send();
+
+
 }
