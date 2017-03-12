@@ -5,7 +5,8 @@ var bestFactsRepository = {
      * @param {Object} options
      *   @param {Number} options.limit - Number of facts to retrieve;
      *   @param {Number} options.days - Number of days.
-     * @param {Function} callback
+     * @param {Function} callback(result)-  callback is called after query is done
+     *                                      result is array of retrieved objects or  "error" if error occurs.
      */
     get : function(options, callback){
        var query = psql.query(`SELECT fact_id, votesum, facts.fact, facts.created_at as date, users.username FROM (

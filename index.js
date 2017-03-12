@@ -4,10 +4,11 @@ var path = require('path');
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var pg = require('pg');
-
-global.__base = __dirname + "/app";
 var hbs = require('express-handlebars');
 
+global.__base = __dirname + "/app";
+
+//connect to db
 pg.defaults.ssl = process.env.DB_SSL != "false";
 pg.connect(process.env.DATABASE_URL, function(err, psqlClient) {
    if (err) throw err;
@@ -46,7 +47,7 @@ app.engine('hbs', hbs(
 			},
 			selected : function(selected, value){
 				if(selected == value)
-					return " selected = selected ";
+					return ' selected = "selected" ' 
 				else
 					return "";
 			}
@@ -72,7 +73,7 @@ app.get('/generate-data', function(req,res){
 });
 
 
-
+/** some routes for testing */
 app.get('/front', function(req,res){
 	res.render('index', {title: 'test', condition: false, anyArray:[]});
 });
@@ -85,70 +86,7 @@ app.get('/users',function(req,res){
 	});
 });
 
-
-/** page routes */
-
-app.get('/',function(req,res){
-	res.render("index", {title: "Faktid"})
-});
-
-app.get('/create-fact',function(req,res){
-	res.render("create-fact",{title: "Postita uus fakt"});
-});
-
-
-app.post('/create-fact', function(req,res){
-    var Fact = require(__base + "/models/fact");
-	var fact = Fact.create();
-	
-	fact.fact = req.body.fact;
-	fact.title = req.body.title;
-	fact.user_id = 12;
-
-	var save = fact.save();
-
-	save.on('error', function(error){
-		res.json(error);
-	});
-
-	save.on('end',function(result){
-		res.send(result);
-	});
-
-});
-
-app.get('/newest',function(req,res){
-	res.render("newest", {title: "Uusimad faktid"});
-});
-
-app.get('/best',function(req,res){
-	var time = req.query.time || "";
-
-	var days = 3000;
-	var times = {}; 
-	times['last24h'] = 1;
-    times['lastweek'] = 7;
-    times['lastmonth'] = 30;
-
-	if(times.hasOwnProperty(time))
-		days = times[time];
-	
-	var bestFactsRepo = require(__base + "/repositories/bestFactsRepository"); 
-	var bestUsersRepo = require(__base + "/repositories/bestUsersRepository"); 
-	console.log(time);
-	bestFactsRepo.get({limit: 5, days: days}, function(bestFacts){
-	bestUsersRepo.get({limit: 5, days: days}, function(bestUsers){
-		res.render("best",{title : "Parimad faktid",selec: time, bestFacts : bestFacts, bestUsers: bestUsers});
-	}); 
-	});
-});
-
-
-app.get('/login', function(req,res){
-	res.render('login',{title: 'Logi sisse'})
-});
-/////// end page routes//
-
+/** helper function to test ajax */
 var generateFact = function(){
 	var fact = {};	
 	var r = Math.round(Math.random() * 1000) + 2;
@@ -159,10 +97,12 @@ var generateFact = function(){
 	return fact;
 };
 
+
 app.get('/fact/next', function(req,res){
 	res.send(generateFact());
 });
 
+//function to load all routes from routes folder
 function loadRoutes(folderName) {
     fs.readdirSync(folderName).forEach(function(file) {
 
@@ -178,6 +118,7 @@ function loadRoutes(folderName) {
     });
 }
 
+//start listening to the port set in .env
 app.listen(app.get('port'), function() {
   console.log('oooooooooook', app.get('port'));
 });

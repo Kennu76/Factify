@@ -1,5 +1,6 @@
 var psql = global.psql;
 
+/** function to create object from shcema fields */
 var createObjectFromSchema = function(schema){
    var o = Object.create(ModelObjectProto); 
    for(var key in schema.fields){
@@ -12,6 +13,7 @@ var createObjectFromSchema = function(schema){
    return o;
 }
 
+/** function to retreive fields that are going to be saved */
 var getSchemaFieldsToSave = function(schema){
    var save = Object.create(null);
 
@@ -26,6 +28,7 @@ var getSchemaFieldsToSave = function(schema){
    return save;
 }
 
+/** function to fill values by schema fields as keys*/
 var fillFieldsToSaveValues = function(obj){
    for(var key in obj._fieldsToSave){
        obj._fieldsToSave[key] = obj[key];
@@ -33,6 +36,7 @@ var fillFieldsToSaveValues = function(obj){
    return obj._fieldsToSave;
 }
 
+/** function to fill value fields by schema fields */
 var getKeysAndValues = function(fieldsToSave){
     var keys = [];
     var values = [];
@@ -68,7 +72,9 @@ var mapValuesToParameters = function(values){
 }
 
 /*
-kõik crud meetodid tagastavad promise'i
+Prototype for model 
+with function to create new modelObject, get mobelObject from database and list all 
+every function returns promise;
 */
 
 var ModelProto = {
@@ -86,6 +92,11 @@ var ModelProto = {
         return query;
     }
 };
+
+/*
+Protototype for modelObject, to save, update or delete single entity
+Every query returns promise
+*/
 
 var ModelObjectProto = {
     save : function(){
@@ -107,6 +118,10 @@ var ModelObjectProto = {
     },
 }
 
+
+/**
+ * function to create new model, which is used to create entities or query 
+ */
 var modelFactory = function(schema){
     var model = Object.create(ModelProto);
     model.schema = schema;

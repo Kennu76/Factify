@@ -1,3 +1,4 @@
+//blueprint for schema
 var Schema = function(tablename, fields){
     this.tablename = tablename,
     this.fields = fields;
