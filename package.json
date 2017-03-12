@@ -10,11 +10,13 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "body-parser": "^1.17.1",
     "ejs": "2.4.1",
     "express": "4.13.3",
     "express-handlebars": "^3.0.0",
     "glob": "^7.1.1",
     "nodemon": "^1.11.0",
+    "pbkdf2": "^3.0.9",
     "pg": "^6.1.2"
   },
   "repository": {

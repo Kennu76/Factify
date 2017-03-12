@@ -23,7 +23,28 @@ $("#upvote").addClass('disabled');
             $('[data-toggle="tooltip"]').tooltip();
         });
 
+		$("#bestof-interval").change(function(e){
+			window.location.search = "time=" + $(this).val();
+		});
+
+
+
 });
+
+
+function vote(type, fact){
+	$.ajax({
+		type: 'POST',
+		url : '/votes',
+		data: {type : type, fact: fact},
+		success : function(res){
+			console.log(res);
+		},
+		dataType : 'json'
+	});
+}
+
+
 
 
 

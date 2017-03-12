@@ -17,7 +17,7 @@ function saadaAjax(){
         //kontrollib state'i, 4 tähendab et tehtud
         if (this.readyState == 4) {
             //siin peaks veel kontrollima kas staatus ja vastus korrektsed
-
+            console.log(ajaxReq.response);
             //teeb tekstist javascripti objekti
             var response = JSON.parse((ajaxReq.response));
 
@@ -25,10 +25,10 @@ function saadaAjax(){
             console.log(response);
 
             //muudab lehel
-            document.getElementById("fact").innerHTML = response.fact;
+            document.getElementById("fact").innerHTML  = response.fact;
             document.getElementById("votes").innerHTML = response.votes;
-            document.getElementById("user").innerHTML = response.user;
-            document.getElementById("date").innerHTML = new Date(response.timestamp);
+            document.getElementById("user").innerHTML  = response.user;
+            document.getElementById("date").innerHTML  = new Date(response.timestamp);
         }
     };
 

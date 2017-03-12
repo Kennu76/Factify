@@ -76,11 +76,13 @@ var ModelProto = {
         var o = createObjectFromSchema(this.schema);
         return o;
     },
-    get : function(){
-        ("SELECT from" + this.schema.tablename + "where id = $1", id);
+    get : function(id){
+        var query = psql.query("SELECT * from " + this.schema.tablename + " where id = $1",[id]);
+        console.log(query);
+        return query;
     },
     list : function(){
-        query = psql.query("SELECT * FROM " + this.schema.tablename + ";");
+        var query = psql.query("SELECT * FROM " + this.schema.tablename + ";");
         return query;
     }
 };

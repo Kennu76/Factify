@@ -81,14 +81,3 @@ var runQuery = function(file, next){
 
      });
 }
-
-
-/*
-var query = psqlClient.query("SELECT * FROM facts");
-query.on('row',function(row){
-		res.send(row);
-});
-*/
-
-
-

@@ -1,5 +1,6 @@
 var Schema = require(__base + "/lib/schema");
 var model = require(__base + "/lib/model");
+var crypto = require('crypto');
 
 
 var userSchema = new Schema(
@@ -17,5 +18,10 @@ var userSchema = new Schema(
 );
 
 var User = model(userSchema);
+
+User.hashPassword = function(password){
+    var hash = crypto.createHash('md5').update(password).digest('hex');
+    return hash;
+}
 
 module.exports = User;
