@@ -156,6 +156,12 @@
   border-radius: 0px;
   box-shadow: none;
 }
+.red {
+    color: #FF0000;
+}
+.blue {
+    color: #2E64FE;
+}
 .btn-login:hover,
 .btn-login:focus {
   color: #fff;
