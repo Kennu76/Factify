@@ -3,44 +3,42 @@
 //laeb selle funktsiooni siis kui leht on laetud, ehk nupp on siis olema millele lister külge läheb
 window.onload = function(){
     //kuulame nupu vajutuse eventi click, käivitab saadaAjax
-    document.getElementById("nupp").addEventListener("click", saadaAjax);
-    $("#fakt").html(response.fact)
+    document.getElementById("nextfact").addEventListener("click", saadaAjax);
+
 }
+function saadaAjax() {
+    $("#factcontent").load("/fact/next", function (responseTxt, statusTxt, xhr) {
+        if (statusTxt == "success") {
 
-
-
-function saadaAjax(){
-    //uus xhr objekt
-    var ajaxReq = new XMLHttpRequest();
-
-    //kui päringu staatus muutub käivitab funktsiooni
-    ajaxReq.onreadystatechange = function() {
-
-        //kontrollib state'i, 4 tähendab et tehtud
-        if (this.readyState == 4) {
-            //siin peaks veel kontrollima kas staatus ja vastus korrektsed
-            console.log(ajaxReq.response);
-            //teeb tekstist javascripti objekti
-            var response = JSON.parse((ajaxReq.response));
-
-            //kuvab konsoolis mis reponsis kirjas (f12 chrome's saab konsooli)
-            console.log(response);
-
-            //muudab lehel
-            document.getElementById("fact").innerHTML  = response.fact;
-            document.getElementById("votes").innerHTML = response.votes;
-            document.getElementById("user").innerHTML  = response.user;
-            document.getElementById("date").innerHTML  = new Date(response.timestamp);
+            //alert("External content loaded successfully!");
+            var response = responseTxt.split(":");
+            var factR = response[1].split(",");
+            var factRe = factR[0].split("#");
+            var factRes = factRe[1].substring(2,(factRe[1].length-1));
+            var upvote;
+            var usernameR = response[2].split(",");
+            var username = usernameR[0].substring(1,usernameR[0].length-1);
+            if(response[4].length == 4){
+                upvote = response[4].substring(0,3);
+            }
+            else if(response[4].length == 3){
+                upvote = response[4].substring(0,2);
+            }
+            else{
+                upvote = response[4].substring(0,1);
+            }
+            //console.log(response);
+            //console.log(factRes);
+            document.getElementById("factcontent").innerHTML = factRes;
+            document.getElementById("upvotecount").innerHTML = upvote;
+            document.getElementById("factusername").innerHTML = username;
+            //document.getElementById("date").innerHTML = new Date(response.timestamp);
+            console.log(responseTxt);
         }
-    };
 
-    //avab päringu, paneb headerid paika
-    //GET tähendab HTTP päringu tüüpi ja /fact/next on aadress kuhu päring läheb ehk
-    // praegu läheb localhost/fact/next, kus server tagastab suvalise fakti
-    ajaxReq.open("GET", "/fact/next", true);
-
-    //saadab päringu serverisse
-    ajaxReq.send();
-
-
+        if (statusTxt == "error") {
+            alert("Error: " + xhr.status + ": " + xhr.statusText);
+        }
+    });
 }
+
