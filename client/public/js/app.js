@@ -30,14 +30,27 @@ $(function(){
 FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
 });
-window.fbAsyncInit = function() {
+function facebookLogin() {
+    var FB = window.FB;
+    var scopes = 'email,user_likes,public_profile';
+
+    FB.login(function(response) {
+      if (response.status === 'connected') {
+        console.log('The user has logged in!');
+        FB.api('/me', function(response) {
+          console.log('Good to see you, ' + response.name + '.');
+        });
+      }
+    }, { scope: scopes });
+  }
+
+  window.fbAsyncInit = function() {
     FB.init({
-      appId      : '772092369606462',
+      appId      : 'YOUR_FACBEOOK_APP_ID',
       cookie     : true,
       xfbml      : true,
-      version    : 'v2.8'
+      version    : 'v2.0'
     });
-    FB.AppEvents.logPageView();
   };
 
   (function(d, s, id){
