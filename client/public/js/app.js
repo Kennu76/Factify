@@ -27,6 +27,37 @@ $(function(){
 		});
 });
 
+FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+});
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '772092369606462',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+{
+    status: 'connected',
+    authResponse: {
+        accessToken: '...',
+        expiresIn:'...',
+        signedRequest:'...',
+        userID:'...'
+    }
+}
+
 
 function vote(type, fact, success){
 	$.ajax({
