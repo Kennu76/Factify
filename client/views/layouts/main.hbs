@@ -19,50 +19,69 @@
     <meta charset="UTF-8">
 
     <title>Factify | {{ title }}</title>
+    <script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
     
 </head>
 
 <body>
 
 <div id="fb-root"></div>
-<script src="//connect.facebook.net/en_US/all.js"></script>
+<script>
 
-<script type="text/javascript">
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    if (response.status === 'connected') {
+      testAPI();
 
-      // Initialize the Facebook JavaScript SDK
-      FB.init({
-        appId: 'APP_ID',
-        xfbml: true,
-        status: true,
-        cookie: true,
-      });
+    } else if (response.status === 'not_authorized') {
+      FB.login(function(response) {
+        statusChangeCallback2(response);
+      }, {scope: 'public_profile,email'});
 
-      // Check if the current user is logged in and has authorized the app
-      FB.getLoginStatus(checkLoginStatus);
+    } else {
+      alert("not connected, not logged into facebook, we don't know");
+    }
+  }
 
-      // Login in the current user via Facebook and ask for email permission
-      function authUser() {
-        FB.login(checkLoginStatus, {scope:'email'});
-      }
+  function statusChangeCallback2(response) {
+    console.log('statusChangeCallback2');
+    console.log(response);
+    if (response.status === 'connected') {
+      testAPI();
 
-      // Check the result of the user status and display login button if necessary
-      function checkLoginStatus(response) {
-        if(response && response.status == 'connected') {
-          alert('User is authorized');
+    } else if (response.status === 'not_authorized') {
+      console.log('still not authorized!');
 
-          // Hide the login button
-          document.getElementById('loginButton').style.display = 'none';
+    } else {
+      alert("not connected, not logged into facebook, we don't know");
+    }
+  }
 
-          // Now Personalize the User Experience
-          console.log('Access Token: ' + response.authResponse.accessToken);
-        } else {
-          alert('User is not authorized');
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
 
-          // Display the login button
-          document.getElementById('loginButton').style.display = 'block';
-        }
-      }
-    </script>
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    });
+  }
+
+  $(document).ready(function() {
+    FB.init({
+      appId      : '202083643612448',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    checkLoginState();
+  });
+</script>
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -92,7 +111,7 @@
         {{else}}
           <li><a href="/login">Registreeri</a></li>
           <li><a href="/login">Logi sisse</a></li>
-          <li><input id="loginButton" type="button" value="FACEBOOK!" onclick="authUser();" /></li>
+          <li><div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div></li>
         {{/if}}
       </ul>
     </div>
