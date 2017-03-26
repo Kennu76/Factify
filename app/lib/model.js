@@ -1,5 +1,4 @@
 var psql = global.psql;
-
 /** function to create object from shcema fields */
 var createObjectFromSchema = function(schema){
    var o = Object.create(ModelObjectProto); 
@@ -12,7 +11,6 @@ var createObjectFromSchema = function(schema){
    o._tablename = schema.tablename; 
    return o;
 }
-
 /** function to retreive fields that are going to be saved */
 var getSchemaFieldsToSave = function(schema){
    var save = Object.create(null);
@@ -89,6 +87,14 @@ var ModelProto = {
     },
     list : function(){
         var query = psql.query("SELECT * FROM " + this.schema.tablename + ";");
+        return query;
+    },
+    findOne : function(key, value){
+        var query = psql.query("SELECT * from " + this.schema.tablename + " where " + key + " =  $1 LIMIT 1;",[value]);
+        return query;
+    },
+    find : function(key, value){
+        var query = psql.query("SELECT * from " + this.schema.tablename + " where " + key + " =  $1;",[value]);
         return query;
     }
 };
