@@ -118,6 +118,7 @@ var generateFact = function(){
 	fact.user = "Random user " + Math.round(r / 2);
 	fact.timestamp = Date.now() - r * 60 * 60 * 887 * 24;
 	fact.votes = Math.round(Math.abs(Math.sin(r) * r));
+	fact.downvotes = Math.round(Math.abs(Math.sin(r) * r/2));
 	return fact;
 };
 
