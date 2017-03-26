@@ -85,6 +85,7 @@ function saadaAjax() {
                 var comment = comments[0].substring(1, comments[0].length-2);
                 var names = response[2].split(",");
                 var name = names[0].substring(1, names[0].length-2);
+                document.getElementById("comment-1").innerHTML = "Kasutaja1 kommentaar";
 
                 $("#commentSection").append("<div class='row'>" +
                     "<div class='col-md-2'>" +
