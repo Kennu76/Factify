@@ -2,7 +2,7 @@
  * WebSocket connection to display some server pushed messages.
  */
 var webSockets = {  
-  webSocketServerUri : "ws://" + window.location.host,
+  webSocketServerUri : "wss://" + window.location.host,
   connectionStatus : "NOT_CONNECTED",
 
   /**
