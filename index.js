@@ -23,7 +23,12 @@ server.on('request', app);
 /**
  * Create websocket server
  */
-var wss = new websocket.Server({server});
+var wss = new websocket.Server({
+	server:server,
+	perMessageDeflate: false
+});
+
+
 
 require (__base + '/lib/websockets.js').init(wss);
 
