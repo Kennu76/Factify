@@ -19,6 +19,8 @@ for(var i = 0; i < 10; i++){
     })
 }
 
+
+
 var q = global.psql.query("SELECT id from users LIMIT 1"); 
 q.on("end",function(result){
 

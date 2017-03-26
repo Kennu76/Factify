@@ -27,52 +27,6 @@ $(function(){
 		});
 });
 
-FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-});
-function facebookLogin() {
-    var FB = window.FB;
-    var scopes = 'email,user_likes,public_profile';
-
-    FB.login(function(response) {
-      if (response.status === 'connected') {
-        console.log('The user has logged in!');
-        FB.api('/me', function(response) {
-          console.log('Good to see you, ' + response.name + '.');
-        });
-      }
-    }, { scope: scopes });
-  }
-
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : 'YOUR_FACBEOOK_APP_ID',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v2.0'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-{
-    status: 'connected',
-    authResponse
-    {
-        accessToken: '...',
-        expiresIn: '...',
-        signedRequest: '...',
-        userID: '...'
-    }
-}
-
-
 function vote(type, fact, success){
 	$.ajax({
 		type: 'POST',
@@ -81,4 +35,15 @@ function vote(type, fact, success){
 		success : success,
 		dataType : 'json'
 	});
+}
+
+function showMessage(message){
+  var elem = $('#app-message');
+  var content = elem.children('.message-content'); 
+  content.text(message);
+
+  elem.fadeIn();
+  setTimeout(function(){
+    elem.fadeOut();
+  }, 5000);
 }

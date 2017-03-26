@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Factify test",
   "engines": {
-    "node": "5.9.1"
+    "node": "4.5.0"
   },
   "main": "index.js",
   "scripts": {
@@ -11,13 +11,18 @@
   },
   "dependencies": {
     "body-parser": "^1.17.1",
+    "connect-flash": "^0.1.1",
     "ejs": "2.4.1",
     "express": "4.13.3",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.1",
     "glob": "^7.1.1",
     "nodemon": "^1.11.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "pbkdf2": "^3.0.9",
-    "pg": "^6.1.2"
+    "pg": "^6.1.2",
+    "ws": "^2.2.2"
   },
   "repository": {
     "type": "git",
@@ -28,5 +33,5 @@
     "heroku",
     "express"
   ],
-  "license": "MIT"  
+  "license": "MIT"
 }
