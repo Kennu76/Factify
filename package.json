@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Factify test",
   "engines": {
-    "node": "5.9.1"
+    "node": "4.5.0"
   },
   "main": "index.js",
   "scripts": {
