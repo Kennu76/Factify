@@ -112,18 +112,31 @@ app.get('/users',function(req,res){
 
 /** helper function to test ajax */
 var generateFact = function(){
-	var fact = {};	
-	var r = Math.round(Math.random() * 1000) + 2;
-	fact.fact = "Random fact #  with not content " + r; 
-	fact.user = "Random user " + Math.round(r / 2);
-	fact.timestamp = Date.now() - r * 60 * 60 * 887 * 24;
-	fact.votes = Math.round(Math.abs(Math.sin(r) * r));
-	fact.downvotes = Math.round(Math.abs(Math.sin(r) * r/2));
-	return fact;
+    var fact = {};
+    var r = Math.round(Math.random() * 1000) + 2;
+    fact.fact = "Random fact #  with not content " + r;
+    fact.user = "Random user " + Math.round(r / 2);
+    fact.timestamp = Date.now() - r * 60 * 60 * 887 * 24;
+    fact.votes = Math.round(Math.abs(Math.sin(r) * r));
+    fact.downvotes = Math.round(Math.abs(Math.sin(r) * r/2));
+    return fact;
 };
 
 app.get('/fact/next', function(req,res){
-	res.send(generateFact());
+    res.send(generateFact());
+});
+
+var generateComment = function(){
+    var comment = {};
+    var r = Math.round(Math.random() * 1000) + 2;
+    comment.fact = "Random comment #  with not content " + r;
+    comment.user = "Random user " + Math.round(r / 2);
+    comment.timestamp = Date.now() - r * 60 * 60 * 887 * 24;
+    return comment;
+};
+
+app.get('/comment/next', function(req,res){
+    res.send(generateComment());
 });
 
 
