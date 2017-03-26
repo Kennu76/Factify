@@ -63,11 +63,12 @@ function facebookLogin() {
 
 {
     status: 'connected',
-    authResponse: {
+    authResponse
+    {
         accessToken: '...',
-        expiresIn:'...',
-        signedRequest:'...',
-        userID:'...'
+        expiresIn: '...',
+        signedRequest: '...',
+        userID: '...'
     }
 }
 

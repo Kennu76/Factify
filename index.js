@@ -86,20 +86,36 @@ app.get('/users',function(req,res){
 	});
 });
 
-/** helper function to test ajax */
+/** helper function to test ajax with new facts*/
 var generateFact = function(){
 	var fact = {};	
 	var r = Math.round(Math.random() * 1000) + 2;
 	fact.fact = "Random fact #  with not content " + r; 
 	fact.user = "Random user " + Math.round(r / 2);
 	fact.timestamp = Date.now() - r * 60 * 60 * 887 * 24;
-	fact.votes = Math.round(Math.abs(Math.sin(r) * r));
+	fact.upvotes = Math.round(Math.abs(Math.sin(r) * r));
+	fact.downvotes = Math.round(Math.abs(Math.sin(r/2) * r));
 	return fact;
 };
 
 
 app.get('/fact/next', function(req,res){
 	res.send(generateFact());
+});
+
+/** helper function to test ajax with comments*/
+var generateComment = function(){
+    var comment = {};
+    var r = Math.round(Math.random() * 1000) + 2;
+    comment.fact = "Random comment #  with not content " + r;
+    comment.user = "Random user " + Math.round(r / 2);
+    comment.timestamp = Date.now() - r * 60 * 60 * 887 * 24;
+    return comment;
+};
+
+
+app.get('/comment/next', function(req,res){
+    res.send(generateComment());
 });
 
 //function to load all routes from routes folder
