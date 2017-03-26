@@ -4,7 +4,7 @@ window.onload = function(){
     //kuulame nupu vajutuse eventi click, käivitab saadaAjax
     document.getElementById("nextfact").addEventListener("click", saadaAjax());
 
-};
+}
 function saadaAjax() {
     $("#factcontent").load("/fact/next", function (responseTxt, statusTxt, xhr) {
         if (statusTxt == "success") {
