@@ -2,7 +2,7 @@
 window.onload = function(){
 
     //kuulame nupu vajutuse eventi click, käivitab saadaAjax
-    document.getElementById("nextfact").addEventListener("click", saadaAjax());
+    document.getElementById("nextfact").addEventListener("click", saadaAjax);
 
 }
 function saadaAjax() {
@@ -45,9 +45,9 @@ function saadaAjax() {
             else{
                 downvote = response[5].substring(0,1);
             }
-            //var currentURL = window.location;
+            var currentURL = window.location;
 
-            //currentURL.hash = "#Fact: "+factRes;
+            currentURL.hash = "#Fact: "+factRes;
 
             //console.log(response);
             //console.log(factRes);
