@@ -1,6 +1,6 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var User            = require(__base + '/models/user');
-var FacebookStrategy = require('passport-facebook').Strategy;
+//var FacebookStrategy = require('passport-facebook').Strategy;
 
 module.exports = function(passport) {
 
@@ -51,11 +51,12 @@ module.exports = function(passport) {
 
         )
         ;
+        /*
         passport.use(new FacebookStrategy({
 
                 // pull in our app id and secret from our auth.js file
                 clientID        : configAuth.facebookAuth.clientID,
-                clientSecret    : confi gAuth.facebookAuth.clientSecret,
+                clientSecret    : configAuth.facebookAuth.clientSecret,
                 callbackURL     : configAuth.facebookAuth.callbackURL
 
             },
@@ -102,6 +103,6 @@ module.exports = function(passport) {
                     });
                 });
 
-            }));
+            }));*/
 
 };
