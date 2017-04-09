@@ -8,18 +8,17 @@ window.onload = function(){
 
 }
 function saadaAjax() {
-    $("#factcontent").load("/fact/next", function (responseTxt, statusTxt, xhr) {
+    $("#factcontent").load("/facts/next", function (responseTxt, statusTxt, xhr) {
         if (statusTxt == "success") {
             var info = JSON.parse(responseTxt);
             var currentURL = window.location;
-            currentURL.hash = ""+info.fact;
+            currentURL.hash = ""+info.id;
+            console.log(info);
 
             document.getElementById("factcontent").innerHTML = info.fact;
-            document.getElementById("upvotecount").innerHTML = info.votes;
+            document.getElementById("upvotecount").innerHTML = info.upvotes;
             document.getElementById("downvotecount").innerHTML = info.downvotes;
-            document.getElementById("factusername").innerHTML = info.user;
-            //document.getElementById("date").innerHTML = new Date(response.timestamp);
-            //console.log(responseTxt);
+            document.getElementById("factusername").innerHTML = info.username;
         }
 
         if (statusTxt == "error") {
@@ -33,7 +32,6 @@ function saadaAjax() {
         var numberOfComments = 9;
         var start = 3;
 
-        // Algselt tuleks loadMoreButton nupp ära kaotada, sest hetkel me ei tea, kas baasi jäi veel kirjeid.
         $('#loadMoreButton').hide();
         $("#comment-1").load("/comment/next", function (responseTxt, statusTxt, xhr) {
             if (statusTxt == "success") {
