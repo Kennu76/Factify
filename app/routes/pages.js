@@ -72,8 +72,8 @@ module.exports = function(app){
     });
 
      app.get('/login', function(req,res){
-         console.log(req.user);
-        res.render('login',{title: 'Logi sisse', messages : req.flash('authing')})
+         res.render('login',{title: 'Logi sisse', messages : req.flash('authing')})
+
     });
 
     app.get('/registered', function(req,res){
@@ -91,6 +91,5 @@ module.exports = function(app){
         prm.on('error',function(err){
            console.log(err);
         });
-
       });
 };

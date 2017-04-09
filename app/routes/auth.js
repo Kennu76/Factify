@@ -44,12 +44,28 @@ module.exports = function(app, passport){
         res.redirect('/');}
 
 
+    function loginRedirect(info) {
+        console.log(info);
+        if (info == 'myfacts') {
+            console.log("myfacts");
+            return '/myfacts';
+        }
+        else if (info == 'create-fact') {
+            console.log("create-fact");
+            return '/create-fact';
+        }
+        else{
+            return '/';
+        }
+    }
 
-    app.post('/login', passport.authenticate('local-login',{
-        successRedirect : '/',
-        failureRedirect : '/login'
-        })
-    );
+    app.post('/login', function(req) {
+        console.log(req.flash('info'));
+            passport.authenticate('local-login', {
+                successRedirect: loginRedirect(req.flash('info')[0]),
+                failureRedirect: '/login'
+            });
+        });
 
     app.get('/logout', function(req,res){
         req.logout();

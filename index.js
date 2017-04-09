@@ -84,17 +84,17 @@ app.engine('hbs', hbs(
 		}
 	}));
 
-app.set('views', path.join(__dirname, '/client/views/'));
-app.set('view engine', 'hbs');
+	app.set('views', path.join(__dirname, '/client/views/'));
+	app.set('view engine', 'hbs');
 
-/**
- * Session configuration
- * Actual configuration in /lib/auth.js
- */
-app.use(session({ secret: 'verysecret' }));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(function(req, res, next) {
+	/**
+	 * Session configuration
+	 * Actual configuration in /lib/auth.js
+	 */
+	app.use(session({ secret: 'verysecret' }));
+	app.use(passport.initialize());
+	app.use(passport.session());
+	app.use(function(req, res, next) {
     res.locals.loggedin = req.isAuthenticated();
     next();
 });
@@ -109,11 +109,13 @@ app.get('/users',function(req,res){
 		res.json(result.rows);
 	});
 });
-
+i = 0;
 /** helper function to test ajax */
 var generateFact = function(){
     var fact = {};
+    i++;
     var r = Math.round(Math.random() * 1000) + 2;
+    fact.id = i;
     fact.fact = "Random fact #  with not content " + r;
     fact.user = "Random user " + Math.round(r / 2);
     fact.timestamp = Date.now() - r * 60 * 60 * 887 * 24;
@@ -129,7 +131,7 @@ app.get('/fact/next', function(req,res){
 var generateComment = function(){
     var comment = {};
     var r = Math.round(Math.random() * 1000) + 2;
-    comment.fact = "Random comment #  with not content " + r;
+    comment.comment = "Random comment #  with not content " + r;
     comment.user = "Random user " + Math.round(r / 2);
     comment.timestamp = Date.now() - r * 60 * 60 * 887 * 24;
     return comment;
