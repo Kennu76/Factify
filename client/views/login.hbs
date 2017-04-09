@@ -1,11 +1,9 @@
 <script>
   FB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
-      // If the user gets here, they're logged in.
-      console.log('Logged in.');
+
     }
     else {
-      // Redirect unauthenticated users to the login page.
       window.location.replace('/login');
     }
   });
@@ -51,6 +49,9 @@
                                 </div>
                                 <div class="col-xs-6 form-group pull-right">
                                     <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+                                </div>
+                                 <div class="col-xs-6 col-xs-offset-6 form-group">
+                                                                              <a class="form-control" href="/login/facebook">FB login</a> 
                                 </div>
                             </form>
                             <form id="register-form" action="/register" method="post"  style="display: none;">

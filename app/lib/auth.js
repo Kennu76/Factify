@@ -1,6 +1,12 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var User            = require(__base + '/models/user');
-//var FacebookStrategy = require('passport-facebook').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+
+var facebookKeys =  {
+    clientID: '202083643612448',
+    clientSecret: 'cd072d9a9ff943a6f38158c41d7a6c15',
+    callbackURL: 'http://localhost:5000/auth/facebook/callback'
+  };
 
 module.exports = function(passport) {
 
@@ -51,58 +57,65 @@ module.exports = function(passport) {
 
         )
         ;
-        /*
+        
         passport.use(new FacebookStrategy({
-
-                // pull in our app id and secret from our auth.js file
-                clientID        : configAuth.facebookAuth.clientID,
-                clientSecret    : configAuth.facebookAuth.clientSecret,
-                callbackURL     : configAuth.facebookAuth.callbackURL
-
+                clientID        : facebookKeys.clientID,
+                clientSecret    : facebookKeys.clientSecret,
+                callbackURL     : facebookKeys.callbackURL
             },
-
-            // facebook will send back the token and profile
             function(token, refreshToken, profile, done) {
 
-                // asynchronous
+                var q =User.findOne( 'fbid', profile.id );
+                console.log(profile);   
                 process.nextTick(function() {
+                    q.on("end",function(result) {
+                       var user = result.rows[0];
+                        if (!user){
+                            var user = User.create();
+                            user.fbid = profile.id;
+                            user.email = profile.displayName;
+                            user.username = profile.displayName;
+                            user.firstname = profile.displayName;
+                            user.lastname = profile.displayName;
+                            user.password = User.hashPassword(profile.displayName);
+                            console.log('fbid: ',user.fbid);
 
-                    // find the user in the database based on their facebook id
-                    var query =User.findOne( 'fbid' : profile.id );
-                    query.on('result', function(){
+                            var save = user.save();
 
-                    })
-                        // if there is an error, stop everything and return that
-                        // ie an error connecting to the database
-                        if (err)
-                            return done(err);
-
-                        // if the user is found, then log them in
-                        if (user) {
-                            return done(null, user); // user found, return that user
-                        } else {
-                            // if there is no user found with that facebook id, create them
-                            var newUser            = new User();
-
-                            // set all of the facebook information in our user model
-                            newUser.facebook.id    = profile.id; // set the users facebook id
-                            newUser.facebook.token = token; // we will save the token that facebook provides to the user
-                            newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-                            newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
-
-                            // save our user to the database
-                            newUser.save(function(err) {
-                                if (err)
-                                    throw err;
-
-                                // if successful, return the new user
-                                return done(null, newUser);
+                            save.on('error',function(err){
+                                console.log(err);
+                                return done(null, false);
                             });
-                        }
 
+                            save.on('end', function(result){
+
+                                var idQuery = User.findOne('fbid', profile.id);
+                                  
+                                idQuery.on('end',function(result){
+                                    console.log('result', result);  
+                                    var id = result.rows[0].id;
+                                    user.id = id;
+                                    return done(null, user);
+                                });
+
+                                idQuery.on('error',function(result){
+                                    return done(null, false);
+                                });
+                            })
+                        }
+                        else{
+                            return done(null, user);
+                        }
                     });
+
+                    q.on("error",function(err){
+                        console.log(err);
+                        if (err)
+                            return done(null,false);
+                    });
+              
                 });
 
-            }));*/
+            }));
 
 };

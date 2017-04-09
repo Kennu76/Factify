@@ -1,4 +1,6 @@
 var psql = global.psql;
+var viewPrefix = "v_";
+var proceduresPrefix = "insert_"
 /** function to create object from shcema fields */
 var createObjectFromSchema = function(schema){
    var o = Object.create(ModelObjectProto); 
@@ -81,20 +83,20 @@ var ModelProto = {
         return o;
     },
     get : function(id){
-        var query = psql.query("SELECT * from " + this.schema.tablename + " where id = $1",[id]);
+        var query = psql.query("SELECT * from " + viewPrefix + this.schema.tablename + " where id = $1",[id]);
         console.log(query);
         return query;
     },
     list : function(){
-        var query = psql.query("SELECT * FROM " + this.schema.tablename + ";");
+        var query = psql.query("SELECT * FROM " + viewPrefix + this.schema.tablename + ";");
         return query;
     },
     findOne : function(key, value){
-        var query = psql.query("SELECT * from " + this.schema.tablename + " where " + key + " =  $1 LIMIT 1;",[value]);
+        var query = psql.query("SELECT * from " + viewPrefix + this.schema.tablename + " where " + key + " =  $1 LIMIT 1;",[value]);
         return query;
     },
     find : function(key, value){
-        var query = psql.query("SELECT * from " + this.schema.tablename + " where " + key + " =  $1;",[value]);
+        var query = psql.query("SELECT * from " + viewPrefix + this.schema.tablename + " where " + key + " =  $1;",[value]);
         return query;
     }
 };
@@ -105,10 +107,26 @@ Every query returns promise
 */
 
 var ModelObjectProto = {
-    save : function(){
+    saves : function(){
+        var values = [];
         this._fieldsToSave = fillFieldsToSaveValues(this);
         var keyValues = getKeysAndValues(this._fieldsToSave);
 
+        if(this._tablename == 'facts')
+            values = [this._fieldsToSave.fact, this._fieldsToSave.title, this._fieldsToSave.user_id];
+        if(this._tablename == 'users')
+            values = [this._fieldsToSave.username, this._fieldsToSave.firstname, this._fieldsToSave.lastname, this._fieldsToSave.password, this._fieldsToSave.email];
+        if(this._tablename == 'votes')
+            values = [this._fieldsToSave.user_id, this._fieldsToSave.fact_id, this._fieldsToSave.type];
+
+
+        var query = "SELECT * from " + proceduresPrefix + this._tablename + "('" + values.join("','") + "');"; 
+        console.log(query);
+        return psql.query(query, keyValues.values);
+    },
+    save : function(){
+        this._fieldsToSave = fillFieldsToSaveValues(this);
+        var keyValues = getKeysAndValues(this._fieldsToSave);
         var query = "INSERT INTO " + this._tablename + "(" + keyValues.keys.join(", ") + ") VALUES (" + mapValuesToParameters(keyValues.values).join() + ");"; 
         return psql.query(query, keyValues.values);
     },

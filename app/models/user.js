@@ -8,12 +8,13 @@ var userSchema = new Schema(
     {
         id         : {type : "id", auto: true},
         username   : {type : "text"},
-        password   : {type : "text"},
         firstname  : {type : "text"},
         lastname   : {type : "text"},
+        password   : {type : "text"},
         email      : {type : "text"},
         created_at : {type : "timestamp", auto: true},
-        updated_at : {type : "timestamp", auto: true}
+        updated_at : {type : "timestamp", auto: true},
+        fbid : {type : "text"}
     }
 );
 

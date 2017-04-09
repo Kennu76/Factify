@@ -6,8 +6,8 @@ var factSchema = new Schema(
     "facts", 
     {
         id         : {type : "id", auto: true},
-        title      : {type : "text"},
         fact       : {type : "text"},
+        title      : {type : "text"},
         created_at : {type : "timestamp", auto: true},
         updated_at : {type : "timestamp", auto: true},
         user_id    : {type : "integer"}

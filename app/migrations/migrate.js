@@ -50,7 +50,7 @@ var workFiles = function(files, cur, next, migrationLevel){
         next();
         return;
     }
-    if(files[cur] <= migrationLevel){
+    if(files[cur] < migrationLevel){
         console.log("Skipped file " + files[cur]);
         workFiles(files,cur+1,next,migrationLevel);
         return;

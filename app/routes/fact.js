@@ -11,7 +11,8 @@ module.exports = function(app){
 
     app.get("/facts", function(req,res){
         var q = Fact.list();
-        q.on("error", function(){
+        q.on("error", function(err){
+            console.log(err);
             console.log("error");
         });
         q.on("end", function(result){
