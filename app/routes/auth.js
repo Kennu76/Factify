@@ -38,27 +38,31 @@ module.exports = function(app, passport){
         res.redirect('/');}
 
 
-    function loginRedirect(req) {
+    /*function loginRedirect(req) {
         //console.log(req.flash('info'));
         var info = req.flash('info');
         console.log(info);
-        if (info[1] == 'myfacts') {
+        if (info[1] == '/myfacts') {
             console.log("myfacts");
             return '/myfacts';
         }
-        else if (info[1] == 'create-fact') {
+        else if (info[1] == '/create-fact') {
             console.log("create-fact");
             return '/create-fact';
         }
         return '/';
-    }
+    }*/
 
-    app.post('/login', function(req) {
+    app.post('/login', function(req, res, next) {
+        var info = req.flash('info');
+        var redirect = '/';
+        if(info)
+            redirect = info;
 
-            passport.authenticate('local-login', {
-                successRedirect: loginRedirect(req),
+        passport.authenticate('local-login', {
+                successRedirect: redirect,
                 failureRedirect: '/login'
-            });
+            })(req, res, next)
         });
 
     app.get('/logout', function(req,res){
