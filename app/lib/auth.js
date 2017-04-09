@@ -5,7 +5,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var facebookKeys =  {
     clientID: '202083643612448',
     clientSecret: 'cd072d9a9ff943a6f38158c41d7a6c15',
-    callbackURL: 'http://localhost:5000/auth/facebook/callback'
+    callbackURL: 'http://factify.herokuapp/auth/facebook/callback'
   };
 
 module.exports = function(passport) {
