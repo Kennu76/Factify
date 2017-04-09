@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="32199bb7-6af1-4f2c-ad86-c68d1797808d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/isAuthed.js" afterPath="$PROJECT_DIR$/app/lib/isAuthed.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes/auth.js" afterPath="$PROJECT_DIR$/app/routes/auth.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes/pages.js" afterPath="$PROJECT_DIR$/app/routes/pages.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
     </list>
     <ignored path="Factify.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,8 +46,8 @@
       <file leaf-file-name="auth.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/routes/auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="67" column="11" lean-forward="true" selection-start-line="46" selection-start-column="4" selection-end-line="67" selection-end-column="11" />
+            <state relative-caret-position="287">
+              <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -59,7 +56,7 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
+            <state relative-caret-position="1358">
               <caret line="163" column="3" lean-forward="true" selection-start-line="163" selection-start-column="3" selection-end-line="163" selection-end-column="3" />
               <folding />
             </state>
@@ -855,7 +852,7 @@
       <workItem from="1490004884840" duration="8382000" />
       <workItem from="1490542485957" duration="7570000" />
       <workItem from="1490559996322" duration="667000" />
-      <workItem from="1491733423062" duration="22923000" />
+      <workItem from="1491733423062" duration="24561000" />
     </task>
     <task id="LOCAL-00001" summary="Added login page 'login.html' and the needed reference">
       <created>1487682612737</created>
@@ -1067,11 +1064,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491737511698</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="meldimine">
+      <created>1491763675831</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1491763675831</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54525000" />
+    <option name="totallyTimeSpent" value="56163000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -1139,7 +1143,8 @@
     <MESSAGE value="Fixed facebook hopefully" />
     <MESSAGE value="Facebook change" />
     <MESSAGE value="still AJAX" />
-    <option name="LAST_COMMIT_MESSAGE" value="still AJAX" />
+    <MESSAGE value="meldimine" />
+    <option name="LAST_COMMIT_MESSAGE" value="meldimine" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1537,7 +1542,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
+        <state relative-caret-position="1358">
           <caret line="163" column="3" lean-forward="true" selection-start-line="163" selection-start-column="3" selection-end-line="163" selection-end-column="3" />
           <folding />
         </state>
@@ -1545,8 +1550,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/routes/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="67" column="11" lean-forward="true" selection-start-line="46" selection-start-column="4" selection-end-line="67" selection-end-column="11" />
+        <state relative-caret-position="287">
+          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding />
         </state>
       </provider>

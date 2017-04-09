@@ -44,25 +44,25 @@ module.exports = function(app, passport){
         res.redirect('/');}
 
 
-    function loginRedirect(info) {
+    function loginRedirect(req) {
+        //console.log(req.flash('info'));
+        var info = req.flash('info');
         console.log(info);
-        if (info == 'myfacts') {
+        if (info[1] == 'myfacts') {
             console.log("myfacts");
             return '/myfacts';
         }
-        else if (info == 'create-fact') {
+        else if (info[1] == 'create-fact') {
             console.log("create-fact");
             return '/create-fact';
         }
-        else{
-            return '/';
-        }
+        return '/';
     }
 
     app.post('/login', function(req) {
-        console.log(req.flash('info'));
+
             passport.authenticate('local-login', {
-                successRedirect: loginRedirect(req.flash('info')[0]),
+                successRedirect: loginRedirect(req),
                 failureRedirect: '/login'
             });
         });
