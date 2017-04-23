@@ -195,3 +195,12 @@
 #app-message .message-content{
     margin-left:10px;
 }
+
+
+.addcomment{
+    margin-top:1em;
+    margin-bottom:2em;
+}
+.addcomment {
+    overflow:hidden;
+}

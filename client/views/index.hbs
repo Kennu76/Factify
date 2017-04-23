@@ -12,7 +12,7 @@
                <div class="panel-footer">
                   <div class="row">
                      <div class="col-md-6">Lisas : <strong id="factusername">user225</strong> </div>
-                     <div class="col-md-6"><button class="btn btn-primary btn-xs pull-right showcomments">Näita kommentaare (3)</button></div>
+                     <div class="col-md-6"><button class="btn btn-primary btn-xs pull-right showcomments">Näita kommentaare</button></div>
                   </div>
                </div>
             </div>
@@ -46,37 +46,31 @@
             <div class="panel panel-primary">
                <div class="panel-heading panel-primary"></div>
                <div class="panel-body" id = "commentSection">
-                  <div class="row">
-                     <div class="col-md-2">
-                        <strong id = "user-1">nimi</strong>
-                     </div>
-                     <div class="col-md-10" id = "comment-1">
-                        KASUTAJA LOLL KOMMENT LOLOLOL
-                     </div>
-                  </div>
-                  <div class="row" >
-                     <div class="col-md-2">
-                        <strong>nimi</strong>
-                     </div>
-                     <div class="col-md-10" id = "comment-2">
-                        Kasutaja2 kommentaar
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-md-2">
-                        <strong>nimi</strong>
-                     </div>
-                     <div class="col-md-10" id = "comment-3">
-                        Kasutaja3 kommentaar
-                     </div>
-                  </div>
+                {{#if loggedin}}
+                <div class="row">
+                    <div class="col-md-12 addcomment">
+                        <form class="form" role="form">
+                            <div class="form-group">
+                                <input id="commenttext" class="form-control" type="text" placeholder="Sinu kommentaar" />
+                            </div>
+                            <div class="form-group">
+                                <button id="addcommentbutton" class="btn btn-default">Lisa kommentaar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {{/if}}
+                
+                <div class="comments-comments">
+                </div>
+           
                </div>
-                <button type = "button" id = "loadMoreButton">Lae rohkem</button>
             </div>
 
             <div class="col-md-2"></div>
          </div>
       </div>
+  
    </div>
 </div>
 </div>

@@ -25,16 +25,15 @@ module.exports = function(app){
     });
 
     app.get("/facts/:fact_id", function(req,res){
-        var q = Fact.get(Number(req.params.fact_id));
-
-        q.on("error", function(err){
-            res.status(204);
-            res.send();
-        });
-
-        q.on("end",function(result){
-            res.json(result.rows[0]); 
-        });
+        var  factRepo = require(__base + '/repositories/factRepository');
+        factRepo.get(req.params.fact_id, function(fact){
+            console.log(fact);
+            if(fact && fact != 'error')
+                res.json(fact);
+            else{
+                res.json({status : 'error'});
+            }
+        }) 
     });
 
     app.put("/facts/:fact_id", function(req,res){

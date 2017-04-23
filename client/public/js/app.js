@@ -1,6 +1,8 @@
 $(function(){
+
 	$(".showcomments").click(function(){
 		$("#comments").toggle();
+		loadComments();
 	});
 
 
@@ -25,7 +27,82 @@ $(function(){
 		$("#bestof-interval").change(function(e){
 			window.location.search = "time=" + $(this).val();
 		});
+
+
+		/* voting buttons */
+		$('#upvote').click(function(){
+			console.log('test');
+			var fact = $('#factcontainer').data('factid');
+			vote(1, fact, voteCallback);
+
+		});
+		
+		$('#downvote').click(function(){
+			var fact = $('#factcontainer').data('factid');
+			vote(-1, fact, voteCallback);
+		});
+
+		$('#addcommentbutton').click(function(e){
+			e.preventDefault();
+			var text = $("#commenttext").val();			
+			var fact = $('#factcontainer').data('factid');
+			if(text.length < 3){
+				showMessage('Liiga lühike kommentaar!');	
+				return;
+			}
+			$.ajax({
+				type: 'POST',
+				url : '/comments',
+				data: {comment : text, fact : fact},
+				success : function(data){
+					if(data.status == 'success'){
+						loadComments();	
+						$("#commenttext").val('');
+					}
+				},
+				dataType : 'json'
+			});	
+		})
 });
+/*
+laod comments*/
+
+function makeComment(username, comment){
+	return $('<div class="row"><div class="col-md-2 comment-username"><strong>' + username +'</strong></div><div class="col-md-10 comment-comment"> ' + comment +  '</div></div>')
+}
+function loadComments(){
+	var fact = $('#factcontainer').data('factid');
+
+
+
+	$.get('/comments/fact/' + fact, function(data){
+		if(data.status == 'success'){
+	  	 	$(".comments-comments").html('');	
+			data.data.forEach(function(el){
+				console.log(el);
+				$(".comments-comments").append(makeComment(el.username, el.comment)); 
+			});
+		}
+	});
+}
+
+/*update votecounts*/
+function voteCallback(data){
+	if(data.status == 'error'){
+		showMessage(data.message);
+		return;
+	}
+	if(data.status == 'success'){
+		if(Number(data.vote) == 1){
+			$("#upvotecount").text(Number($("#upvotecount").text()) + 1);
+			//$("#downvotecount").text(Number($("#downvotecount").text()) -1);
+		}
+		else{
+			//$("#upvotecount").text(Number($("#upvotecount").text()) - 1);
+		    $("#downvotecount").text(Number($("#downvotecount").text()) + 1);
+		}
+	}
+}
 
 function vote(type, fact, success){
 	$.ajax({
@@ -36,7 +113,10 @@ function vote(type, fact, success){
 		dataType : 'json'
 	});
 }
-
+/**
+ * show message on screen 
+ * message - message to show
+ */
 function showMessage(message){
   var elem = $('#app-message');
   var content = elem.children('.message-content'); 

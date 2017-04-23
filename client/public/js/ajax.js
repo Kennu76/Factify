@@ -3,27 +3,42 @@ window.onload = function(){
     i = 0;
 
     //kuulame nupu vajutuse eventi click, käivitab saadaAjax
-    document.getElementById("nextfact").addEventListener("click", saadaAjax);
-    document.getElementById("loadMoreButton").addEventListener("click", moreComments);
+    //document.getElementById("nextfact").addEventListener("click", saadaAjax);
+    $('#nextfact').click(saadaAjax);
+    //document.getElementById("loadMoreButton").addEventListener("click", moreComments);
+    if(window.location.hash != '' && window.location.hash != '#'){
+        var fact = window.location.hash;
+        loadFact(fact.replace("#","")); 
+        return;
+    }
+    saadaAjax();
 
 }
+
+function loadFact(fact){
+    $.get("/facts/" + fact, function(data){
+           if(data.status == 'error')
+                return; 
+           $("#comments").hide();
+           $(".comments-comments").html('');
+           $("#factcontainer").data('factid', data.fact_id); 
+           document.getElementById("factcontent").innerHTML = data.fact;
+           document.getElementById("upvotecount").innerHTML = data.upvotes;
+           document.getElementById("downvotecount").innerHTML = data.downvotes;
+           document.getElementById("factusername").innerHTML = data.username;
+    });
+}
+
 function saadaAjax() {
-    $("#factcontent").load("/facts/next", function (responseTxt, statusTxt, xhr) {
-        if (statusTxt == "success") {
-            var info = JSON.parse(responseTxt);
-            var currentURL = window.location;
-            currentURL.hash = ""+info.id;
-            console.log(info);
-
-            document.getElementById("factcontent").innerHTML = info.fact;
-            document.getElementById("upvotecount").innerHTML = info.upvotes;
-            document.getElementById("downvotecount").innerHTML = info.downvotes;
-            document.getElementById("factusername").innerHTML = info.username;
-        }
-
-        if (statusTxt == "error") {
-            alert("Error: " + xhr.status + ": " + xhr.statusText);
-        }
+    $.get("/facts/next", function (data) {
+           window.location.hash = data.fact_id;
+           $("#comments").hide();
+           $(".comments-comments").html('');
+           $("#factcontainer").data('factid', data.fact_id); 
+           document.getElementById("factcontent").innerHTML = data.fact;
+           document.getElementById("upvotecount").innerHTML = data.upvotes;
+           document.getElementById("downvotecount").innerHTML = data.downvotes;
+           document.getElementById("factusername").innerHTML = data.username;
     });
 }
 

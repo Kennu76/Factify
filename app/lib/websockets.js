@@ -3,7 +3,6 @@ var WebSocket = require('ws');
 var wss;
 
 var init = function(server){
-  console.log(server);
   wss = server;
   wss.on('connection', function(ws){
     console.log('connection inc');

@@ -38,11 +38,9 @@ module.exports = function(passport) {
             q.on("end",function(result) {
                 var user = result.rows[0];
                 if (!user){
-                    console.log(done); 
                     return done(null, false);
                 }
                 if (User.hashPassword(password) != user.password){
-                    console.log("vale paro");
                     return done(null, false); 
                 }
                 return done(null, user);
@@ -66,7 +64,6 @@ module.exports = function(passport) {
             function(token, refreshToken, profile, done) {
 
                 var q =User.findOne( 'fbid', profile.id );
-                console.log(profile);   
                 process.nextTick(function() {
                     q.on("end",function(result) {
                        var user = result.rows[0];
@@ -78,12 +75,10 @@ module.exports = function(passport) {
                             user.firstname = profile.displayName;
                             user.lastname = profile.displayName;
                             user.password = User.hashPassword(profile.displayName);
-                            console.log('fbid: ',user.fbid);
 
                             var save = user.save();
 
                             save.on('error',function(err){
-                                console.log(err);
                                 return done(null, false);
                             });
 
@@ -92,7 +87,6 @@ module.exports = function(passport) {
                                 var idQuery = User.findOne('fbid', profile.id);
                                   
                                 idQuery.on('end',function(result){
-                                    console.log('result', result);  
                                     var id = result.rows[0].id;
                                     user.id = id;
                                     return done(null, user);
@@ -109,7 +103,6 @@ module.exports = function(passport) {
                     });
 
                     q.on("error",function(err){
-                        console.log(err);
                         if (err)
                             return done(null,false);
                     });
