@@ -9,7 +9,7 @@ var commentsRepository = {
      *                                      result is array of retrieved objects or  "error" if error occurs.
      */
     get : function(fact_id, callback){
-       var query = psql.query(`select comment, users.username from comments
+       var query = psql.query(`select comments.id, comment, users.username from comments
                                 left join users on
                                 comments.user_id = users.id
                                 where fact_id = $1;`,

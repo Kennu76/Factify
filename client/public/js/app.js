@@ -63,13 +63,50 @@ $(function(){
 				dataType : 'json'
 			});	
 		})
+
+		/* fact buttons on myfact page */
+
+		$('.delete-fact-button').click(function(){
+			var fact_id = $(this).data('id');
+			var self = this;
+			$.ajax({
+				method : 'DELETE',
+				url : '/facts/' + fact_id,
+				success : function(data){
+					if(data.status == 'success'){
+						$(self).parent().parent().fadeOut('slow').remove();
+					}
+				},
+				dataType : 'json',
+				contentType:'application/json'
+			}) 
+		});
+
+		/* delete comment */
+	$('body').on('click', '.delete-comment-button', function(){
+			var comment = $(this).data('id');
+			var self = this;
+			$.ajax({
+				method : 'DELETE',
+				url : '/comments/' + comment,
+				success : function(data){
+					if(data.status == 'success'){
+						$(self).parent().parent().fadeOut('slow').remove();
+					}
+				},
+				dataType : 'json',
+				contentType:'application/json'
+			}) 
+		});
 });
 /*
 laod comments*/
 
-function makeComment(username, comment){
-	return $('<div class="row"><div class="col-md-2 comment-username"><strong>' + username +'</strong></div><div class="col-md-10 comment-comment"> ' + comment +  '</div></div>')
+function makeComment(username, comment,id){
+	return $('<div class="row"><div class="col-md-2 comment-username"><strong>' + username +'</strong></div><div class="col-md-10 comment-comment"> ' + comment +  '<span class="glyphicon glyphicon-remove delete-comment-button" data-id="' + id + '"aria-hidden="true"></span></div></div>')
 }
+
+	
 function loadComments(){
 	var fact = $('#factcontainer').data('factid');
 
@@ -80,10 +117,11 @@ function loadComments(){
 	  	 	$(".comments-comments").html('');	
 			data.data.forEach(function(el){
 				console.log(el);
-				$(".comments-comments").append(makeComment(el.username, el.comment)); 
+				$(".comments-comments").append(makeComment(el.username, el.comment, el.id)); 
 			});
 		}
 	});
+
 }
 
 /*update votecounts*/

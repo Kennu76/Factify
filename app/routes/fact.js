@@ -41,6 +41,38 @@ module.exports = function(app){
     });
     
     app.delete("/facts/:fact_id", function(req,res){
-        res.send("deleter");
+        console.log('test');
+         if(!req.isAuthenticated()){
+            var response = {status : 'error', message : 'Pead sisse logima'}; 
+            res.json(response);
+            return;
+        }
+
+        var user = req.user;
+        var factid = req.params.fact_id;
+
+        //check if belongs to that user
+        var q = Fact.get(factid);
+        q.on('error',function(err){
+            console.log(err);
+            res.json(err)
+            return;
+        })
+        q.on('end', function(result){
+            if(result.rows.length == 0)
+                return;
+            if(result.rows[0].user_id == user.id){
+                var s = Fact.delete(factid);            
+                s.on('end', function(result){ 
+                    res.json({status : 'success'});
+                });
+                s.on('error', function(err){ 
+                    console.log(err);
+                    return;
+                });
+            }
+            else
+                res.json({status : 'error', message : 'Pead fakti looja olema'});
+        });
     });
 }

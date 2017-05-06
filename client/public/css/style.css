@@ -204,3 +204,12 @@
 .addcomment {
     overflow:hidden;
 }
+
+
+.delete-comment-button{
+    color:red;
+    float:right;
+    cursor:pointer;
+}
+
+

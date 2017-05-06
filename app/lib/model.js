@@ -84,7 +84,10 @@ var ModelProto = {
     },
     get : function(id){
         var query = psql.query("SELECT * from " + viewPrefix + this.schema.tablename + " where id = $1",[id]);
-        console.log(query);
+        return query;
+    },
+    delete : function(id){
+        var query = psql.query("DELETE from " + this.schema.tablename + " where id = $1",[id]);
         return query;
     },
     list : function(){
