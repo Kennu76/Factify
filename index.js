@@ -9,6 +9,7 @@ var passport = require('passport');
 var session = require('express-session');
 var flash = require('connect-flash');
 var websocket = require('ws');
+var expressStaticGzip = require("express-static-gzip");
 /**
  * Helper global variable for simpler requires.
  */
@@ -41,14 +42,17 @@ pg.connect(process.env.DATABASE_URL, function(err, psqlClient) {
    global.psql = psqlClient;
    require(__base+"/lib/auth")(passport);
    loadRoutes(__base + "/routes");
-   psqlClient.query("ALTER TABLE users add column ik varchar(100);");
 });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(flash());
 app.set('port', (process.env.PORT || 5000));
-app.use('/',express.static(path.join(__dirname + '/client/public')));
+app.use('/js',expressStaticGzip(path.join(__dirname + '/client/public/js')));
+app.use('/css',expressStaticGzip(path.join(__dirname + '/client/public/css')));
+app.use('/',express.static(path.join(__dirname + '/client/public'), {maxAge:30*86400000}));
+
+
 
 /**
  * View engine configuration
@@ -101,7 +105,7 @@ app.engine('hbs', hbs(
 });
 
 
-/** some routes for testing */
+
 
 app.get('/users',function(req,res){
 	var User = require(__base + "/models/user");

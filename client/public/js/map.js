@@ -8,11 +8,12 @@
 
 
         var latLng = new google.maps.LatLng(58.594344, 25.5452);
-
+       /* 
         var marker = new google.maps.Marker({
           position: latLng,
           map: map
         });
+        */
 
     
 

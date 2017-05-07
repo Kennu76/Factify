@@ -14,6 +14,7 @@ var bestUsersRepository = {
                                JOIN votes on facts.id = votes.fact_id
                                WHERE votes.created_at > (current_timestamp - ( $1 || ' days') :: INTERVAL )
                                GROUP BY username
+                               ORDER BY votesum desc
                                LIMIT $2`,
                                [options.days, options.limit]); 
 

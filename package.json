@@ -16,6 +16,7 @@
     "express": "4.13.3",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.1",
+    "express-static-gzip": "^0.2.2",
     "glob": "^7.1.1",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
