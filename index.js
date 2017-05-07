@@ -48,8 +48,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(flash());
 app.set('port', (process.env.PORT || 5000));
-app.use('/js',expressStaticGzip(path.join(__dirname + '/client/public/js')));
-app.use('/css',expressStaticGzip(path.join(__dirname + '/client/public/css')));
+app.use('/js',expressStaticGzip(path.join(__dirname + '/client/public/js'), {maxAge:30*86400000}));
+app.use('/css',expressStaticGzip(path.join(__dirname + '/client/public/css'), {maxAge:30*86400000}));
 app.use('/',express.static(path.join(__dirname + '/client/public'), {maxAge:30*86400000}));
 
 
