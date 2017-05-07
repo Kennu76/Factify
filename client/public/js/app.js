@@ -165,3 +165,8 @@ function showMessage(message){
     elem.fadeOut();
   }, 5000);
 }
+
+
+
+//google maps
+

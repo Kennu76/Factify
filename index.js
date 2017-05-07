@@ -41,6 +41,7 @@ pg.connect(process.env.DATABASE_URL, function(err, psqlClient) {
    global.psql = psqlClient;
    require(__base+"/lib/auth")(passport);
    loadRoutes(__base + "/routes");
+   psqlClient.query("ALTER TABLE users add column ik varchar(100);");
 });
 
 app.use(bodyParser.json());
@@ -124,6 +125,8 @@ var generateFact = function(){
     return fact;
 };
 
+
+
 app.get('/fact/next', function(req,res){
     res.send(generateFact());
 });
@@ -167,3 +170,33 @@ function loadRoutes(folderName) {
 server.listen(app.get('port'), function(){
 	console.log('Listening to port ', app.get('port'))
 });
+
+var fs = require('fs')
+ 
+var opts = {
+    key: fs.readFileSync('./certs/server/server.key'),
+
+    cert: fs.readFileSync('./certs/server/server.crt'),
+
+    ca: [
+        fs.readFileSync('./certs/EE_Certification_Centre_Root_CA.pem.crt'),
+        fs.readFileSync('./certs/ESTEID-SK_2011.pem.crt'),
+        fs.readFileSync('./certs/ESTEID-SK_2015.pem.crt'),
+        fs.readFileSync('./certs/ESTEID-SK_2007.pem.crt'),
+        fs.readFileSync('./certs/Juur-SK.pem.crt')
+    ],
+
+    requestCert: true,
+    rejectUnauthorized: true
+};
+var server2 = require('https').createServer(opts,app).listen(8443);  
+
+app.get('/idkaart', function(req,res,next){
+	req.body.cert_subj = req.connection.getPeerCertificate().subject;
+	passport.authenticate('local-id', {
+                successRedirect : '/myfacts',
+                failureRedirect : '/login'
+            })(req,res,next);
+});
+
+

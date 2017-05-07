@@ -1,7 +1,8 @@
 //laeb selle funktsiooni siis kui leht on laetud, ehk nupp on siis olema millele lister külge läheb
 window.onload = function(){
     i = 0;
-
+    if($('#nextfact').length == 0)
+        return false;
     //kuulame nupu vajutuse eventi click, käivitab saadaAjax
     //document.getElementById("nextfact").addEventListener("click", saadaAjax);
     $('#nextfact').click(saadaAjax);

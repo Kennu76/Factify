@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+   <persons>
+
+      <person>
+         <lat>23</lat>
+         <lng>25</lng>
+         <name>Tambet</name>
+      </person>
+
+      <person>
+         <lat>23</lat>
+         <lng>25</lng>
+         <name>Martti</name>
+      </person>
+
+      <person>
+         <lat>23</lat>
+         <lng>25</lng>
+         <name>Kevin</name>
+      </person>
+
+   </persons>
+
+   <visitors>
+     <visitor>
+        <lat>23</lat>
+        <lng>25</lng>
+        <count>2</count>
+     </visitor>
+     <visitor>
+        <lat>59.436640</lat>
+        <lng>24.76015</lng>
+        <count>10</count>
+     </visitor>
+     <visitor>
+        <lat>58.384088</lat>
+        <lng>26.732547</lng>
+        <count>14</count>
+     </visitor>
+     <visitor>
+        <lat>58.261687</lat>
+        <lng>26.732547</lng>
+        <count>2</count>
+     </visitor>
+     <visitor>
+        <lat>58.372527</lat>
+        <lng>25.570922</lng>
+        <count>7</count>
+     </visitor>
+     <visitor>
+        <lat>58.946676</lat>
+        <lng>23.540629</lng>
+        <count>4</count>
+     </visitor>
+     <visitor>
+        <lat> 59.393402</lat>
+        <lng>27.91330</lng>
+        <count>9</count>
+     </visitor>
+     <visitor>
+        <lat>58.249151</lat>
+        <lng>22.488609</lng>
+        <count>3</count>
+     </visitor>
+     <visitor>
+        <lat>58.056653</lat>
+        <lng>25.451716</lng>
+        <count>2</count>
+     </visitor>
+     <visitor>
+        <lat>58.975857</lat>
+        <lng>24.670893</lng>
+        <count>5</count>
+     </visitor>
+     <visitor>
+        <lat>58.375857</lat>
+        <lng>24.470893</lng>
+        <count>8</count>
+     </visitor>
+   </visitors>
+   <map>
+        <center>
+            <lat>58.594344</lat>
+            <lng>25.5423</lng>
+        </center>
+        <zoom>
+           7 
+        </zoom>
+   </map>
+
+</root>

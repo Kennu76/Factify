@@ -79,6 +79,10 @@ module.exports = function(app){
     app.get('/registered', function(req,res){
         res.render('registered'); 
     });
+
+    app.get('/info', function(req,res){
+        res.render('info'); 
+    });
     
     app.get('/myfacts', isAuthed, function(req,res){
         var Fact = require(__base + '/models/fact');

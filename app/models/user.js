@@ -14,7 +14,8 @@ var userSchema = new Schema(
         email      : {type : "text"},
         created_at : {type : "timestamp", auto: true},
         updated_at : {type : "timestamp", auto: true},
-        fbid : {type : "text"}
+        fbid : {type : "text"},
+        ik : {type : "text"}
     }
 );
 

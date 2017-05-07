@@ -1,6 +1,7 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var User            = require(__base + '/models/user');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var CustomStrategy = require('passport-custom').Strategy;
 
 var facebookKeys =  {
     clientID: '202083643612448',
@@ -25,6 +26,56 @@ module.exports = function(passport) {
             done(err, null);
         });
     });
+   passport.use('local-id', 
+        new CustomStrategy(
+            function(req, done){
+                console.log(req.body.cert_subj);
+
+                var q = User.findOne("ik", req.body.cert_subj.serialNumber); 
+
+                q.on("end",function(result) {
+                       var user = result.rows[0];
+                        if (!user){
+                            var user = User.create();
+                            user.ik = req.body.cert_subj.serialNumber;
+                            user.email = req.body.cert_subj.SN;
+                            user.username = req.body.cert_subj.SN + "-" + req.body.cert_subj.GN;
+                            user.firstname = req.body.cert_subj.SN;
+                            user.lastname = req.body.cert_subj.GN; 
+                            user.password = User.hashPassword(user.ik);
+
+                            var save = user.save();
+
+                            save.on('error',function(err){
+                                return done(null, false);
+                            });
+
+                            save.on('end', function(result){
+
+                                var idQuery = User.findOne('ik', req.body.cert_subj.serialNumber);
+                                  
+                                idQuery.on('end',function(result){
+                                    var id = result.rows[0].id;
+                                    user.id = id;
+                                    return done(null, user);
+                                });
+
+                                idQuery.on('error',function(result){
+                                    return done(null, false);
+                                });
+                            })
+                        }
+                        else{
+                            return done(null, user);
+                        }
+                    });
+
+                    q.on("error",function(err){
+                        if (err)
+                            return done(null,false);
+                    });
+                 }
+          ));
 
    passport.use('local-login', 
         new LocalStrategy({

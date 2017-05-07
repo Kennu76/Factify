@@ -95,7 +95,7 @@ var ModelProto = {
         return query;
     },
     findOne : function(key, value){
-        var query = psql.query("SELECT * from " + viewPrefix + this.schema.tablename + " where " + key + " =  $1 LIMIT 1;",[value]);
+        var query = psql.query("SELECT * from " + this.schema.tablename + " where " + key + " =  $1 LIMIT 1;",[value]);
         return query;
     },
     find : function(key, value){
